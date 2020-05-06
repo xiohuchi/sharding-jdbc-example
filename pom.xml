@@ -20,6 +20,7 @@
 
     <modules>
         <module>sharding-jdbc-master-slave</module>
+        <module>sharding-jdbc-range-group</module>
     </modules>
 
     <dependencies>
