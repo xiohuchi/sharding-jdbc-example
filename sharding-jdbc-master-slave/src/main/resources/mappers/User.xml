@@ -3,9 +3,9 @@
 <mapper namespace="com.shardingjdbc.repository.UserRepository">
 
     <resultMap id="baseResultMap" type="com.shardingjdbc.entity.User">
-        <result column="id" property="id" jdbcType="INTEGER" />
-        <result column="username" property="username" jdbcType="VARCHAR" />
-        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
     </resultMap>
 
     <insert id="addUser">
@@ -13,14 +13,14 @@
           id, username, password
         )
         VALUES (
-        #{id,jdbcType=INTEGER},
-        #{username,jdbcType=VARCHAR},
-        #{password,jdbcType=VARCHAR}
+        #{id},
+        #{username},
+        #{password}
         )
     </insert>
 
     <select id="list" resultMap="baseResultMap">
-        SELECT u.* FROM user u
+        SELECT * FROM user
     </select>
 
 </mapper>

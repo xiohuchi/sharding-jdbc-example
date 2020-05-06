@@ -43,5 +43,5 @@ sharding:
         show: true
 
 mybatis:
-  mapper-locations: classpath:daoMapper/*.xml
-  typeAliasesPackage: com.dianmi.domain.entity
+  mapper-locations: classpath:mappers/*.xml
+  typeAliasesPackage: com.shardingjdbc.entity
