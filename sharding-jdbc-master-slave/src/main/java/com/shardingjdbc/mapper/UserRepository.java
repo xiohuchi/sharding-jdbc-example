@@ -1,4 +1,4 @@
-package com.shardingjdbc.repository;
+package com.shardingjdbc.mapper;
 
 
 import com.shardingjdbc.entity.User;

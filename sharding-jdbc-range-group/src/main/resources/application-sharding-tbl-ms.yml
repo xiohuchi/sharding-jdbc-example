@@ -1,0 +1,93 @@
+server:
+  port: 8905
+spring:
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  shardingsphere:
+    datasource:
+      names: ds-master,ds-slave1,ds-slave2
+      # 配置主库
+      ds-master: #org.apache.tomcat.jdbc.pool.DataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ybdb?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: 123456
+        #最大连接数
+        maxPoolSize: 20
+      ds-slave1: # 配置第一个从库
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3316/ybdb?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: 123456
+        maxPoolSize: 20
+      ds-slave2: # 配置第二个从库
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3326/ybdb?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: 123456
+        maxPoolSize: 20
+      #      masterSlaveRules: #读写分离规则，详见读写分离部分
+      #        <data_source_name>: #数据源名称，需要与真实数据源匹配，可配置多个data_source_name
+      #          masterDataSourceName: db-master #详见读写分离部分
+      #          slaveDataSourceNames: db-slave1,db-slave2 #详见读写分离部分
+      #          loadBalanceAlgorithmType: round_robin #详见读写分离部分 random 随机 //round_robin 轮询
+      #          props: #读写分离负载算法的属性配置
+      #            sql.show: true #是否开启SQL显示，默认值: false
+      #            executor.size: #工作线程数量，默认值: CPU核数
+      #            max.connections.size.per.query: # 每个查询可以打开的最大连接数量,默认为1
+      #            check.table.metadata.enabled: #是否在启动时检查分表元数据一致性，默认值: false
+      sharding:
+        master-slave-rules:
+          load-balance-algorithm-type: round_robin # 配置从库选择策略，提供轮询与随机，这里选择用轮询//random 随机 //round_robin 轮询
+          name: ds_ms
+          master-data-source-name: ds-master
+          slave-data-source-names: ds-slave1,ds-slave2
+          props:
+            sql.show: true #是否开启SQL显示，默认值: false
+            executor.size: 2 #工作线程数量，默认值: CPU核数
+            max.connections.size.per.query: 1 # 每个查询可以打开的最大连接数量,默认为1
+            check.table.metadata.enabled: false #是否在启动时检查分表元数据一致性，默认值: false
+        tables: #数据分片规则配置，可配置多个logic_table_name
+          user:
+            actual-data-nodes: ds_0.user_$->{0..3}
+            table-strategy:
+              standard:
+                sharding-column: id
+                precise-algorithm-class-name: com.shardingjdbc.MyPreciseShardingAlgorithm
+
+#      shardingRule:
+#        tables: #数据分片规则配置，可配置多个logic_table_name
+#          <logic_table_name>: #逻辑表名称
+#            actualDataNodes: #由数据源名 + 表名组成，以小数点分隔。多个表以逗号分隔，支持inline表达式。缺省表示使用已知数据源与逻辑表名称生成数据节点，用于广播表（即每个库中都需要一个同样的表用于关联查询，多为字典表）或只分库不分表且所有库的表结构完全一致的情况
+#
+#            databaseStrategy: #分库策略，缺省表示使用默认分库策略，以下的分片策略只能选其一
+#              standard: #用于单分片键的标准分片场景
+#                shardingColumn: #分片列名称
+#                preciseAlgorithmClassName: #精确分片算法类名称，用于=和IN。。该类需实现PreciseShardingAlgorithm接口并提供无参数的构造器
+#                rangeAlgorithmClassName: #范围分片算法类名称，用于BETWEEN，可选。。该类需实现RangeShardingAlgorithm接口并提供无参数的构造器
+#              complex: #用于多分片键的复合分片场景
+#                shardingColumns: #分片列名称，多个列以逗号分隔
+#                algorithmClassName: #复合分片算法类名称。该类需实现ComplexKeysShardingAlgorithm接口并提供无参数的构造器
+#              inline: #行表达式分片策略
+#                shardingColumn: #分片列名称
+#                algorithmInlineExpression: #分片算法行表达式，需符合groovy语法
+#              hint: #Hint分片策略
+#                algorithmClassName: #Hint分片算法类名称。该类需实现HintShardingAlgorithm接口并提供无参数的构造器
+#              none: #不分片
+#            tableStrategy: #分表策略，同分库策略
+#            keyGenerator:
+#              column: #自增列名称，缺省表示不使用自增主键生成器
+#              type: #自增列值生成器类型，缺省表示使用默认自增列值生成器。可使用用户自定义的列值生成器或选择内置类型：SNOWFLAKE/UUID
+#              props: #属性配置, 注意：使用SNOWFLAKE算法，需要配置worker.id与max.tolerate.time.difference.milliseconds属性。若使用此算法生成值作分片值，建议配置max.vibration.offset属性
+#                <property-name>: 属性名称
+#
+#
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  typeAliasesPackage: com.shardingjdbc.entity
+mapper:
+  mappers: com.shardingjdbc.mapper

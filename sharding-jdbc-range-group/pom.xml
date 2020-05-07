@@ -25,9 +25,9 @@
             <version>2.1.2</version>
         </dependency>
         <dependency>
-            <groupId>io.shardingsphere</groupId>
+            <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-            <version>3.1.0</version>
+            <version>4.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>

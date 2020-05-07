@@ -1,7 +1,7 @@
 package com.shardingjdbc.service.impl;
 
 import com.shardingjdbc.entity.User;
-import com.shardingjdbc.repository.UserRepository;
+import com.shardingjdbc.mapper.UserRepository;
 import com.shardingjdbc.service.UserService;
 import org.springframework.stereotype.Service;
 

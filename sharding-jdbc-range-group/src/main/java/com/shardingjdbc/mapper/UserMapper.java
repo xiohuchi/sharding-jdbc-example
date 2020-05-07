@@ -1,4 +1,4 @@
-package com.shardingjdbc.repository;
+package com.shardingjdbc.mapper;
 
 
 import com.shardingjdbc.entity.User;
@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface UserRepository {
+public interface UserMapper {
 
-    Long addUser(User user);
+    Integer addUser(User user);
 
     List<User> list();
 

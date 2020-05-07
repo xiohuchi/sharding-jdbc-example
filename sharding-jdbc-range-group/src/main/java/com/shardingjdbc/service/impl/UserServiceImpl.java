@@ -1,33 +1,32 @@
 package com.shardingjdbc.service.impl;
 
+
 import com.shardingjdbc.entity.User;
-import com.shardingjdbc.repository.UserRepository;
+import com.shardingjdbc.mapper.UserMapper;
 import com.shardingjdbc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @author yangbin
- */
 @Service
 public class UserServiceImpl implements UserService {
 
     @Resource
-    private UserRepository userRepository;
+    UserMapper userMapper;
 
     @Override
-    public Long addUser(User user) {
+    public Integer addUser(User user) {
 
         // 强制路由主库
         //HintManager.getInstance().setMasterRouteOnly();
-        return userRepository.addUser(user);
+        return userMapper.addUser(user);
     }
 
     @Override
     public List<User> list() {
 
-        return userRepository.list();
+        return userMapper.list();
     }
 }
