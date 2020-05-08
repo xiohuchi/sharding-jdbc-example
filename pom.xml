@@ -19,8 +19,7 @@
     </properties>
 
     <modules>
-        <module>sharding-jdbc-master-slave</module>
-        <module>sharding-jdbc-range-group</module>
+        <module>sharding-spring-boot-mybatis-example</module>
     </modules>
 
     <dependencies>

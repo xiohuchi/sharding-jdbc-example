@@ -1,0 +1,44 @@
+server:
+  port: 8905
+spring:
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  shardingsphere:
+    datasource:
+      names: ds-master,ds-slave1,ds-slave2
+      # 配置主库
+      ds-master: #org.apache.tomcat.jdbc.pool.DataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ybdb?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: 123456
+        #最大连接数
+        maxPoolSize: 20
+      ds-slave1: # 配置第一个从库
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3316/ybdb?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: 123456
+        maxPoolSize: 20
+      ds-slave2: # 配置第二个从库
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3326/ybdb?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: 123456
+        maxPoolSize: 20
+
+    masterslave:
+      load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+      name: ms
+      master-data-source-name: ds-master #主库数据源名称
+      slave-data-source-names: ds-slave1,ds-slave2 #从库数据源名称列表
+    props:
+      sql.show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
+      executor.size: 2 #工作线程数量，默认值: CPU核数
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  typeAliasesPackage: com.shardingjdbc.entity

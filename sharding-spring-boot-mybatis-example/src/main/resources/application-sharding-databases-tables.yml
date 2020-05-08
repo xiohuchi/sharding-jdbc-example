@@ -1,0 +1,93 @@
+
+server:
+  port: 8905
+spring:
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  shardingsphere:
+    datasource:
+      names: master0,master0slave0,master0slave1,master1,master1slave0,master1slave1
+
+      # master0库
+      master0:
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+      master0slave0:
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3316/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+      master0slave1:
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3326/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+
+      # master1库
+      master1:
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+      master1slave0:
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3316/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+      master1slave1:
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3326/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        username: root
+
+    sharding:
+      tables:
+        t_order_item:
+          key-generator:
+            column: order_item_id
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_item$->{order_id % 2}
+          actual-data-nodes: ds$->{0..1}.t_order_item$->{0..1}
+        t_order:
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order$->{order_id % 2}
+          actual-data-nodes: ds$->{0..1}.t_order$->{0..1}
+      binding-tables: t_order,t_order_item
+      default-database-strategy:
+        inline:
+          sharding-column: user_id
+          algorithm-expression: master$->{user_id % 2}
+      master-slave-rules:
+        ds0:
+          slave-data-source-names: master0slave0, master0slave1
+          master-data-source-name: master0
+          load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+        ds1:
+          slave-data-source-names: master1slave0, master1slave1
+          master-data-source-name: master1
+          load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+      broadcast-tables: t_config
+    #打印sql
+    props:
+      sql.show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
+      executor.size: 2 #工作线程数量，默认值: CPU核数
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  typeAliasesPackage: com.shardingjdbc.entity
