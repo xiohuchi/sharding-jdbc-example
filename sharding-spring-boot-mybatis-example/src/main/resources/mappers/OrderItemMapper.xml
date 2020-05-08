@@ -10,7 +10,7 @@
     </resultMap>
 
     <insert id="addOrderItem">
-        INSERT INTO order_item (
+        INSERT INTO t_order_item (
             order_item_id,
             order_id,
             user_id,
@@ -25,7 +25,7 @@
     </insert>
 
     <select id="list" resultMap="baseResultMap">
-        SELECT * FROM user
+        SELECT * FROM t_order_item
     </select>
 
 </mapper>

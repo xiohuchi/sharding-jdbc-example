@@ -11,7 +11,7 @@
     </resultMap>
 
     <insert id="addUser">
-        INSERT INTO user (
+        INSERT INTO t_user (
         user_id,
         user_name,
         user_name_plain,
@@ -34,7 +34,7 @@
             user_name_plain,
             pwd,
             assisted_query_pwd
-         FROM user
+         FROM t_user
     </select>
 
 </mapper>

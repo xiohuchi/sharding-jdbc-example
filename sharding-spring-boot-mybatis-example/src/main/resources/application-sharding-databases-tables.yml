@@ -69,6 +69,7 @@ spring:
               algorithm-expression: t_order$->{order_id % 2}
           actual-data-nodes: ds$->{0..1}.t_order$->{0..1}
       binding-tables: t_order,t_order_item
+      broadcast-tables: t_config
       default-database-strategy:
         inline:
           sharding-column: user_id
@@ -82,7 +83,7 @@ spring:
           slave-data-source-names: master1slave0, master1slave1
           master-data-source-name: master1
           load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
-      broadcast-tables: t_config
+
     #打印sql
     props:
       sql.show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
