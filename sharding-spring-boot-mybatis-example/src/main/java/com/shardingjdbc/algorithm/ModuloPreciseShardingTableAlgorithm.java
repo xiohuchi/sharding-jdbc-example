@@ -1,12 +1,11 @@
 package com.shardingjdbc.algorithm;
 
-import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
 
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 
 /**
@@ -15,25 +14,21 @@ import java.util.stream.Collectors;
  * @time: 2020/4/14
  */
 @Slf4j
-public final class ModuloPreciseShardingTableAlgorithm implements PreciseShardingAlgorithm<Long> {
+public final class ModuloPreciseShardingTableAlgorithm implements PreciseShardingAlgorithm<LocalDate> {
 
     @Override
-    public String doSharding(final Collection<String> tableNames, final PreciseShardingValue<Long> shardingValue) {
-        for (Pair<String, Integer> each : nameToSuffixPair(tableNames)) {
-            if (each.getValue() == shardingValue.getValue() / 2 % tableNames.size()) {
-                return each.getKey();
-            }
+    public String doSharding(final Collection<String> tableNames, final PreciseShardingValue<LocalDate> shardingValue) {
+        StringBuilder sb = new StringBuilder();
+        LocalDate value = shardingValue.getValue();
+        //获取设置的虚拟表名称，这里获取到的logicTableName=t_attendance
+        String logicTableName = shardingValue.getLogicTableName();
+        //拼接实际的表名称，value为carParkId字段的值
+        sb.append(logicTableName).append(value.getYear()).append(String.format("%02d", value.getMonthValue()));
+        if (tableNames.contains(sb.toString())) {
+            return sb.toString();
+        } else {
+            log.info("取模精确分片策略：没找到与分片键匹配的库名! {} : {} = {}", shardingValue.getLogicTableName(), shardingValue.getColumnName(), shardingValue.getValue());
+            throw new UnsupportedOperationException();
         }
-        log.info("取模精确分片策略：没找到与分片键匹配的库名! {} : {} = {}", shardingValue.getLogicTableName(), shardingValue.getColumnName(), shardingValue.getValue());
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * @param target
-     * @description: 数据库名/表名 String集合转换Pair集合，key=String，value=后缀数字
-     * @return: java.util.Collection<javafx.util.Pair < java.lang.String, java.lang.Integer>>
-     */
-    public static Collection<Pair<String, Integer>> nameToSuffixPair(Collection<String> target) {
-        return target.stream().map(e -> new Pair<>(e, Integer.parseInt(e.substring(e.lastIndexOf("_") + 1)))).collect(Collectors.toList());
     }
 }

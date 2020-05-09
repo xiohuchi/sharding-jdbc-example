@@ -29,4 +29,10 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.list();
     }
+
+    @Override
+    public List<User> selectLikePwd(String pwd) {
+        pwd = "%" + pwd + "%";
+        return userMapper.selectLikePwd(pwd);
+    }
 }

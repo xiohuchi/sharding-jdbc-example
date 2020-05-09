@@ -1,6 +1,6 @@
 package com.shardingjdbc.mapper;
 
-import com.shardingjdbc.entity.OrderItem;
+import com.shardingjdbc.entity.Attendance;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,10 +10,10 @@ import java.util.List;
  * @date 2020年05月08日
  */
 @Mapper
-public interface OrderItemMapper {
+public interface AttendanceMapper {
 
-    Integer addOrderItem(OrderItem orderItem);
+    Integer add(Attendance attendance);
 
-    List<OrderItem> list();
+    List<Attendance> list();
 
 }

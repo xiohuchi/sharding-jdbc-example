@@ -37,4 +37,14 @@
          FROM t_user
     </select>
 
+    <select id="selectLikePwd" resultMap="baseResultMap">
+        SELECT
+            user_id,
+            user_name,
+            user_name_plain,
+            pwd,
+            assisted_query_pwd
+         FROM t_user
+         where pwd like #{pwd}
+    </select>
 </mapper>

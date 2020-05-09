@@ -11,13 +11,11 @@
 
     <insert id="insertOrder" parameterType="com.shardingjdbc.entity.Order">
         INSERT INTO t_order (
-         order_id,
          user_id,
          address_id,
          status
         )
         VALUES (
-        #{orderId},
         #{userId},
         #{addressId},
         #{status}

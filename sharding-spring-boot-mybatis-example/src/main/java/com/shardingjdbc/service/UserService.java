@@ -9,4 +9,6 @@ public interface UserService {
     Integer addUser(User user);
 
     List<User> list();
+
+    List<User> selectLikePwd(String pwd);
 }
