@@ -24,12 +24,13 @@ public class OrderController {
     @GetMapping("/addOders")
     public Object addOders() {
 
-        for (int i = 11; i < 20; i++) {
+        for (int i = 1; i <= 10; i++) {
             Order order = new Order();
-            order.setUserId(1);
+            order.setUserId(2);
+            order.setOrderId(i);
             order.setAddressId(System.currentTimeMillis());
             order.setStatus("新的订单" + i);
-            long resutl = orderMapper.addOrder(order);
+            long resutl = orderMapper.insertOrder(order);
             log.info("insert:" + order.toString() + " result:" + resutl);
         }
         return "ok";

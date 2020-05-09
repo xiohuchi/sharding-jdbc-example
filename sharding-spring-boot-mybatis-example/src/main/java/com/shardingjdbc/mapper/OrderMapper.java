@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    Integer addOrder(Order user);
+    Integer insertOrder(Order order);
 
     List<User> list();
 

@@ -1,4 +1,4 @@
-package java.com.shardingjdbc;
+package com.shardingjdbc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

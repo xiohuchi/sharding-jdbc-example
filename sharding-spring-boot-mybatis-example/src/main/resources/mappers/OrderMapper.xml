@@ -9,7 +9,7 @@
         <result column="status" property="status"/>
     </resultMap>
 
-    <insert id="addOrder">
+    <insert id="insertOrder" parameterType="com.shardingjdbc.entity.Order">
         INSERT INTO t_order (
          order_id,
          user_id,

@@ -10,7 +10,7 @@
         <result column="assisted_query_pwd" property="assistedQueryPwd"/>
     </resultMap>
 
-    <insert id="addUser">
+    <insert id="addUser" parameterType="com.shardingjdbc.entity.User">
         INSERT INTO t_user (
         user_id,
         user_name,

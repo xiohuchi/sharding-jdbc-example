@@ -1,0 +1,101 @@
+spring:
+  shardingsphere:
+    #数据源配置
+    datasource:
+      names: ds-master0,ds-master0-slave0,ds-master0-slave1,ds-master1,ds-master1-slave0,ds-master1-slave1
+      ds-master0:
+        jdbc-url: jdbc:mysql://localhost:3306/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+      ds-master0-slave0:
+        jdbc-url: jdbc:mysql://localhost:3316/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+      ds-master0-slave1:
+        jdbc-url: jdbc:mysql://localhost:3326/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+      ds-master1:
+        jdbc-url: jdbc:mysql://localhost:3306/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+      ds-master1-slave0:
+        jdbc-url: jdbc:mysql://localhost:3316/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+      ds-master1-slave1:
+        jdbc-url: jdbc:mysql://localhost:3326/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+
+    sharding:
+      #主从配置
+      master-slave-rules:
+        ds_0:
+          slave-data-source-names: ds-master0-slave0, ds-master0-slave1
+          master-data-source-name: ds-master0
+          load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+        ds_1:
+          slave-data-source-names: ds-master1-slave0, ds-master1-slave1
+          master-data-source-name: ds-master1
+          load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+      #默认分库策略
+      default-database-strategy:
+        #内置
+        inline:
+          sharding-column: user_id
+          algorithm-expression: ds_$->{user_id % 2}
+      #绑定表
+      binding-tables: t_order,t_order_item
+      #广播表
+      broadcast-tables: t_config
+      tables:
+        t_order:
+          #真实表分布
+          actual-data-nodes: ds_$->{0..1}.t_order$->{0..1}
+          table-strategy:
+#            #标准分表策略
+#            standard:
+#              sharding-column: order_id
+#              #range-algorithm-class-name: com.shardingjdbc.algorithm.ModuloPreciseShardingTableAlgorithm
+#              precise-algorithm-class-name: com.shardingjdbc.algorithm.ModuloPreciseShardingTableAlgorithm
+            #内置分表策略
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order$->{order_id % 2}
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123
+
+        t_order_item:
+          actual-data-nodes: ds_$->{0..1}.t_order_item$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_item$->{order_id % 2}
+          key-generator:
+            column: order_item_id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123
+
+    #打印sql
+    props:
+      sql.show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
+      executor.size: 2 #工作线程数量，默认值: CPU核数
