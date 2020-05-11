@@ -2,6 +2,7 @@ package com.shardingjdbc.service;
 
 
 import com.shardingjdbc.entity.User;
+
 import java.util.List;
 
 public interface UserService {

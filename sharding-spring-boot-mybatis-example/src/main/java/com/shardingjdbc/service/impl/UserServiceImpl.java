@@ -4,7 +4,6 @@ package com.shardingjdbc.service.impl;
 import com.shardingjdbc.entity.User;
 import com.shardingjdbc.mapper.UserMapper;
 import com.shardingjdbc.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
