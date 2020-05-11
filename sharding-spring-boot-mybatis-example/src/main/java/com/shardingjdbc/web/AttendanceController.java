@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author yangbin
@@ -34,8 +35,8 @@ public class AttendanceController {
             Attendance attendance = new Attendance();
             attendance.setUserId(1);
             attendance.setSiteName(i + "-深圳市南山区环球数码大厦");
-            attendance.setAccessDate(LocalDate.now());
-            attendance.setInsertTime(LocalDateTime.now());
+            attendance.setAccessDate(new Date());
+            attendance.setInsertTime(new Date());
             long resutl = attendanceMapper.add(attendance);
             log.info("insert:" + attendance.toString() + " result:" + resutl);
         }

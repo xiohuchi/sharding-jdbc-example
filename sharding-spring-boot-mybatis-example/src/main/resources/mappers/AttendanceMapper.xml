@@ -10,7 +10,7 @@
         <result column="insert_time" property="insertTime"/>
     </resultMap>
 
-    <insert id="add">
+    <insert id="add" parameterType="com.shardingjdbc.entity.Attendance">
         INSERT INTO t_attendance (
             user_id,
             site_name,
@@ -26,7 +26,14 @@
     </insert>
 
     <select id="list" resultMap="baseResultMap">
-        SELECT * FROM t_attendance
+        SELECT
+        attendance_id,
+        user_id,
+        site_name,
+        access_date,
+        insert_time
+        FROM t_attendance
+        order by attendance_id
     </select>
 
 </mapper>

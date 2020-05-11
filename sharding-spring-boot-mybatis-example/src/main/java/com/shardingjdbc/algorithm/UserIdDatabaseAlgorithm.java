@@ -9,11 +9,13 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
+ * 根据userId分库策略
+ *
  * @author yangbin
  * @date 2020年05月09日
  */
 @Slf4j
-public class ModuloPreciseShardingDatabaseAlgorithm implements PreciseShardingAlgorithm<Long> {
+public class UserIdDatabaseAlgorithm implements PreciseShardingAlgorithm<Long> {
 
     @Override
     public String doSharding(final Collection<String> databaseNames, final PreciseShardingValue<Long> shardingValue) {

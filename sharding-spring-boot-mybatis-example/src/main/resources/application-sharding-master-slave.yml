@@ -4,39 +4,39 @@ spring:
     datasource:
       names: ds-master0,ds-master0-slave0,ds-master0-slave1,ds-master1,ds-master1-slave0,ds-master1-slave1
       ds-master0:
-        jdbc-url: jdbc:mysql://localhost:3306/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
-        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3306/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master0-slave0:
-        jdbc-url: jdbc:mysql://localhost:3316/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
-        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3316/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master0-slave1:
-        jdbc-url: jdbc:mysql://localhost:3326/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
-        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3326/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master1:
-        jdbc-url: jdbc:mysql://localhost:3306/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
-        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3306/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master1-slave0:
-        jdbc-url: jdbc:mysql://localhost:3316/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
-        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3316/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master1-slave1:
-        jdbc-url: jdbc:mysql://localhost:3326/master1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
-        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3326/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
 
@@ -53,10 +53,15 @@ spring:
           load-balance-algorithm-type: round_robin
       #默认分库策略
       default-database-strategy:
-        #内置
-        inline:
-          sharding-column: user_id
-          algorithm-expression: ds_$->{user_id % 2}
+        #标准分库
+        standard:
+          sharding-column: order_id
+          #range-algorithm-class-name: com.shardingjdbc.algorithm.UserIdDatabaseAlgorithm
+          precise-algorithm-class-name: com.shardingjdbc.algorithm.UserIdDatabaseAlgorithm
+#        #内置
+#        inline:
+#          sharding-column: user_id
+#          algorithm-expression: ds_$->{user_id % 2}
       #绑定表
       binding-tables: t_order,t_attendance
       #广播表
@@ -81,18 +86,23 @@ spring:
 
         t_attendance:
           #真实表分布 按月分表
-          actual-data-nodes: ds_$->{0..1}.t_attendance${2019..2020}0${1..9},ds_$->{0..1}.t_attendance${2019..2020}${10..12},
+          actual-data-nodes: ds_$->{0..1}.t_attendance$->{2019..2020}0$->{1..9},ds_$->{0..1}.t_attendance$->{2019..2020}$->{10..12},
           table-strategy:
             #标准分表策略
             standard:
               sharding-column: access_date
-              precise-algorithm-class-name: com.shardingjdbc.algorithm.ModuloPreciseShardingTableAlgorithm
+              precise-algorithm-class-name: com.shardingjdbc.algorithm.AttendanceShardingTableAlgorithm
           key-generator:
             column: attendance_id
             type: SNOWFLAKE
             props:
               worker:
                 id: 123
+              max:
+                tolerate:
+                  time:
+                    difference:
+                      milliseconds: 1000
 
       #数据脱敏
       encryptRule:
