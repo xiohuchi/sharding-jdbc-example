@@ -20,7 +20,6 @@
 
     <modules>
         <module>sharding-spring-boot-mybatis-example</module>
-        <module>sharding_jdbc_with_seata_demo</module>
     </modules>
 
     <packaging>pom</packaging>
