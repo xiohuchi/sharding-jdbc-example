@@ -1,6 +1,7 @@
 package com.shardingjdbc.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @date 2020年05月08日
  */
 @Data
+@ToString
 public class Attendance implements Serializable {
 
     private static final long serialVersionUID = 263434701950670170L;
@@ -26,15 +28,4 @@ public class Attendance implements Serializable {
     private Date accessDate;
 
     private Date insertTime;
-
-    @Override
-    public String toString() {
-        return "Attendance{" +
-                "attendanceId=" + attendanceId +
-                ", userId=" + userId +
-                ", siteName='" + siteName + '\'' +
-                ", accessDate=" + accessDate +
-                ", insertTime=" + insertTime +
-                '}';
-    }
 }

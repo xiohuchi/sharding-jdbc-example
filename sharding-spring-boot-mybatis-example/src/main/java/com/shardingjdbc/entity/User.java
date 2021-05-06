@@ -1,6 +1,7 @@
 package com.shardingjdbc.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @date 2020年05月08日
  */
 @Data
+@ToString
 public class User implements Serializable {
 
     private static final long serialVersionUID = 263434701950670170L;
@@ -24,9 +26,4 @@ public class User implements Serializable {
     private String pwd;
 
     private String assistedQueryPwd;
-
-    @Override
-    public String toString() {
-        return String.format("user_id: %d, user_name: %s, user_name_plain: %s, pwd: %s, assisted_query_pwd: %s", userId, userName, userNamePlain, pwd, assistedQueryPwd);
-    }
 }

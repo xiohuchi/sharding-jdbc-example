@@ -4,15 +4,15 @@
 
 分库分表策略效果图
 
-![image](https://github.com/yangbinsoft/sharding-jdbc-example/blob/master/screenshot/0bfa78e904931777795a3b11fa92468.png)
+![image](../sharding-jdbc-example/screenshot/0bfa78e904931777795a3b11fa92468.png)
 
 数据库效果图
 
-![image](https://github.com/yangbinsoft/sharding-jdbc-example/blob/master/screenshot/ae8cbfec26f42d370afd4050c0775ef.png)
+![image](../sharding-jdbc-example/screenshot/ae8cbfec26f42d370afd4050c0775ef.png)
 
 我的微信号图：y1250211588 小火柴卖的小孩
 
-![image](https://github.com/yangbinsoft/sharding-jdbc-example/blob/master/screenshot/9a853241d12a3fb7aac80d1276719d2.png)
+![image](../sharding-jdbc-example/screenshot/9a853241d12a3fb7aac80d1276719d2.png)
 
 ```yml
 spring:
