@@ -32,7 +32,7 @@ public class AttendanceShardingTableAlgorithm implements PreciseShardingAlgorith
         if (tableNames.contains(sb.toString())) {
             return sb.toString();
         } else {
-            log.info("取模精确分片策略：没找到与分片键匹配的表名! {} : {} = {}", shardingValue.getLogicTableName(), shardingValue.getColumnName(), shardingValue.getValue());
+            log.error("取模精确分片策略：没找到与分片键匹配的表名! {} : {} = {}", shardingValue.getLogicTableName(), shardingValue.getColumnName(), shardingValue.getValue());
             throw new UnsupportedOperationException();
         }
     }

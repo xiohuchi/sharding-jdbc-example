@@ -4,37 +4,37 @@ spring:
     datasource:
       names: ds-master0,ds-master0-slave0,ds-master0-slave1,ds-master1,ds-master1-slave0,ds-master1-slave1
       ds-master0:
-        jdbc-url: jdbc:mysql://localhost:3306/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3306/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master0-slave0:
-        jdbc-url: jdbc:mysql://localhost:3316/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3316/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master0-slave1:
-        jdbc-url: jdbc:mysql://localhost:3326/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3326/master0?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master1:
-        jdbc-url: jdbc:mysql://localhost:3306/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3306/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master1-slave0:
-        jdbc-url: jdbc:mysql://localhost:3316/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3316/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       ds-master1-slave1:
-        jdbc-url: jdbc:mysql://localhost:3326/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3326/master1?characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
         username: root

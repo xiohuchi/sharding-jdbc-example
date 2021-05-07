@@ -6,7 +6,7 @@ spring:
       names: ds-master,ds-slave1,ds-slave2
       # 配置主库
       ds-master:
-        jdbc-url: jdbc:mysql://localhost:3306/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3306/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
         type: com.zaxxer.hikari.HikariDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
         username: root
@@ -14,14 +14,14 @@ spring:
         #最大连接数
         maxPoolSize: 20
       ds-slave1: # 配置第一个从库
-        jdbc-url: jdbc:mysql://localhost:3316/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3316/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
         type: com.zaxxer.hikari.HikariDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
         username: root
         password: 123456
         maxPoolSize: 20
       ds-slave2: # 配置第二个从库
-        jdbc-url: jdbc:mysql://localhost:3326/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        jdbc-url: jdbc:mysql://106.52.208.123:3326/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
         type: com.zaxxer.hikari.HikariDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
         username: root
