@@ -6,7 +6,6 @@
         <groupId>com.example</groupId>
         <artifactId>sharding-jdbc-example</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sharding-jdbc</groupId>
     <artifactId>sharding-spring-boot-mybatis-example</artifactId>
