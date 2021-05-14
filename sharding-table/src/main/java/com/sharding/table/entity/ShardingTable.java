@@ -1,4 +1,4 @@
-package com.sharding.table;
+package com.sharding.table.entity;
 
 import lombok.Data;
 import lombok.ToString;
@@ -12,5 +12,5 @@ public class ShardingTable {
     private Integer id;
     private String name;
     private Integer age;
-    private Date insert_time;
+    private Date insertTime;
 }
