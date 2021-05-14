@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharding.table.mapper.StudentScoreMapper">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.sharding.table.entity.StudentScore">
+        <result column="id" property="id"/>
+        <result column="student_id" property="studentId"/>
+        <result column="course" property="course"/>
+        <result column="day" property="day"/>
+        <result column="score" property="score"/>
+        <result column="insert_time" property="insertTime"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        id
+        ,
+        student_id,
+        course,
+        day,
+        score,
+        insert_time
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO student_score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">id,</if>
+            <if test="pojo.studentId != null">student_id,</if>
+            <if test="pojo.course != null">course,</if>
+            <if test="pojo.day != null">day,</if>
+            <if test="pojo.score != null">score,</if>
+            <if test="pojo.insertTime != null">insert_time,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">#{pojo.id},</if>
+            <if test="pojo.studentId != null">#{pojo.studentId},</if>
+            <if test="pojo.course != null">#{pojo.course},</if>
+            <if test="pojo.day != null">#{pojo.day},</if>
+            <if test="pojo.score != null">#{pojo.score},</if>
+            <if test="pojo.insertTime != null">#{pojo.insertTime},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO student_score(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.studentId},
+            #{pojo.course},
+            #{pojo.day},
+            #{pojo.score},
+            #{pojo.insertTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE student_score
+        <set>
+            <if test="pojo.id != null">id = #{pojo.id},</if>
+            <if test="pojo.studentId != null">student_id = #{pojo.studentId},</if>
+            <if test="pojo.course != null">course = #{pojo.course},</if>
+            <if test="pojo.day != null">day = #{pojo.day},</if>
+            <if test="pojo.score != null">score = #{pojo.score},</if>
+            <if test="pojo.insertTime != null">insert_time = #{pojo.insertTime}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+
+    <!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM student_score
+        <where>
+            <if test="pojo.id != null">AND student_id = #{pojo.id}</if>
+            <if test="pojo.studentId != null">AND student_id = #{pojo.studentId}</if>
+            <if test="pojo.course != null">AND course = #{pojo.course}</if>
+            <if test="pojo.day != null">AND day = #{pojo.day}</if>
+            <if test="pojo.score != null">AND score = #{pojo.score}</if>
+            <if test="pojo.insertTime != null">AND insert_time = #{pojo.insertTime}</if>
+        </where>
+    </select>
+
+    <select id="selectStudentScore" resultType="com.sharding.table.dto.StudentVo">
+        select
+        s.name studentName,
+        ss.student_id,
+        ss.course,
+        ss.day,
+        ss.score
+        from student_score ss
+        left join student s on ss.student_id = s.id
+        <where>
+            <if test="day!=null">and ss.day = #{day}</if>
+            <if test="studentName!=null">and s.name = #{studentName}</if>
+        </where>
+
+    </select>
+
+</mapper>

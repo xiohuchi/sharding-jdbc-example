@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharding.table.mapper.StudentMapper">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.sharding.table.entity.Student">
+        <result column="id" property="id"/>
+        <result column="sno" property="sno"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        id
+        ,
+        sno,
+        name,
+        sex
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">id,</if>
+            <if test="pojo.sno != null">sno,</if>
+            <if test="pojo.name != null">name,</if>
+            <if test="pojo.sex != null">sex,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">#{pojo.id},</if>
+            <if test="pojo.sno != null">#{pojo.sno},</if>
+            <if test="pojo.name != null">#{pojo.name},</if>
+            <if test="pojo.sex != null">#{pojo.sex},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO student(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.sno},
+            #{pojo.name},
+            #{pojo.sex}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE student
+        <set>
+            <if test="pojo.id != null">id = #{pojo.id},</if>
+            <if test="pojo.sno != null">sno = #{pojo.sno},</if>
+            <if test="pojo.name != null">name = #{pojo.name},</if>
+            <if test="pojo.sex != null">sex = #{pojo.sex}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+
+    <!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM student
+        <where>
+            <if test="pojo.id != null">AND id = #{pojo.id}</if>
+            <if test="pojo.sno != null">AND sno = #{pojo.sno}</if>
+            <if test="pojo.name != null">AND name = #{pojo.name}</if>
+            <if test="pojo.sex != null">AND sex = #{pojo.sex}</if>
+        </where>
+    </select>
+</mapper>
