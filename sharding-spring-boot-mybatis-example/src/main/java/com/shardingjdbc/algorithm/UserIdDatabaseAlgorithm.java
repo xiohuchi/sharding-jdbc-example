@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public class UserIdDatabaseAlgorithm implements PreciseShardingAlgorithm<Long> {
-
     @Override
     public String doSharding(final Collection<String> databaseNames, final PreciseShardingValue<Long> shardingValue) {
         for (Pair<String, Integer> each : nameToSuffixPair(databaseNames)) {

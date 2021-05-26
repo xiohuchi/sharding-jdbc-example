@@ -17,9 +17,6 @@
     <modules>
         <module>sharding-spring-boot-mybatis-example</module>
         <module>sharding-table</module>
-        <module>sharding-proxy</module>
-        <module>example-spring-mybatis</module>
-        <module>example-api</module>
     </modules>
 
     <packaging>pom</packaging>
