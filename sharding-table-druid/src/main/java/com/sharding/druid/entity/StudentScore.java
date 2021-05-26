@@ -1,4 +1,4 @@
-package com.sharding.table.entity;
+package com.sharding.druid.entity;
 
 import lombok.Data;
 import lombok.ToString;

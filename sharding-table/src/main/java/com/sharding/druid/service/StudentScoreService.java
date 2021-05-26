@@ -1,10 +1,10 @@
-package com.sharding.table.service;
+package com.sharding.druid.service;
 
-import com.sharding.table.dto.StudentVo;
-import com.sharding.table.entity.Student;
-import com.sharding.table.entity.StudentScore;
-import com.sharding.table.mapper.StudentMapper;
-import com.sharding.table.mapper.StudentScoreMapper;
+import com.sharding.druid.dto.StudentVo;
+import com.sharding.druid.entity.Student;
+import com.sharding.druid.entity.StudentScore;
+import com.sharding.druid.mapper.StudentMapper;
+import com.sharding.druid.mapper.StudentScoreMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -23,20 +23,8 @@ public class StudentScoreService {
     @Resource
     private StudentMapper studentMapper;
 
-    public int insert(StudentScore pojo) {
-        return studentScoreMapper.insert(pojo);
-    }
-
-    public int insertList(List<StudentScore> pojos) {
-        return studentScoreMapper.insertList(pojos);
-    }
-
     public List<StudentScore> select(StudentScore pojo) {
         return studentScoreMapper.select(pojo);
-    }
-
-    public int update(StudentScore pojo) {
-        return studentScoreMapper.update(pojo);
     }
 
     public int addRandom(String day) {
@@ -58,4 +46,7 @@ public class StudentScoreService {
         return studentScoreMapper.selectStudentScore(studentName, day);
     }
 
+    public void testSql(String sql) {
+        jdbcTemplate.execute(sql);
+    }
 }

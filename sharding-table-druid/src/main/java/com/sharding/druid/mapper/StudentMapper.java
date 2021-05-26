@@ -1,6 +1,6 @@
-package com.sharding.table.mapper;
+package com.sharding.druid.mapper;
 
-import com.sharding.table.entity.Student;
+import com.sharding.druid.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

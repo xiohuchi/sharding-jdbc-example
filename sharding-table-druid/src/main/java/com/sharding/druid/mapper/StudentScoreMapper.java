@@ -1,7 +1,7 @@
-package com.sharding.table.mapper;
+package com.sharding.druid.mapper;
 
-import com.sharding.table.dto.StudentVo;
-import com.sharding.table.entity.StudentScore;
+import com.sharding.druid.dto.StudentVo;
+import com.sharding.druid.entity.StudentScore;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

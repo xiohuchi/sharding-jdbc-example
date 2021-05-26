@@ -1,4 +1,4 @@
-package com.sharding.table.dto;
+package com.sharding.druid.dto;
 
 import lombok.Data;
 

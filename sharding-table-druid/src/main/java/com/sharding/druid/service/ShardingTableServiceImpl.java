@@ -1,4 +1,4 @@
-package com.sharding.table.service;
+package com.sharding.druid.service;
 
 public class ShardingTableServiceImpl {
 }

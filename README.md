@@ -2,6 +2,11 @@
 
 这是一个亲自手写的有用的项目，里面有数据库sql
 
+连接池配置性能方面：HikariCP>druid>tomcat-jdbc>dbcp>c3p0
+
+HikariCP速度快得飞起，号称史上性能最好的数据库连接池，Springboot2.0 也把它设置为默认的数据源连接池。
+
+
 分库分表策略效果图
 
 ![image](../sharding-jdbc-example/screenshot/0bfa78e904931777795a3b11fa92468.png)
