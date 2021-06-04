@@ -9,15 +9,15 @@ HikariCP速度快得飞起，号称史上性能最好的数据库连接池，Spr
 
 分库分表策略效果图
 
-![image](../sharding-jdbc-example/screenshot/0bfa78e904931777795a3b11fa92468.png)
+![image](https://app.yinxiang.com/FileSharing.action?hash=1/c32ecc7a00f4b458f2494da390805306-133738)
 
 数据库效果图
 
-![image](../sharding-jdbc-example/screenshot/ae8cbfec26f42d370afd4050c0775ef.png)
+![image](https://app.yinxiang.com/FileSharing.action?hash=1/f6cb843dd0f48a45c2b50c903948d5bf-130843)
 
 我的微信号图：y1250211588 小火柴卖的小孩
 
-![image](../sharding-jdbc-example/screenshot/9a853241d12a3fb7aac80d1276719d2.png)
+![image](https://app.yinxiang.com/FileSharing.action?hash=1/f89f0862aaec27f286ffc774f803815a-74319)
 
 ```yml
 spring:
