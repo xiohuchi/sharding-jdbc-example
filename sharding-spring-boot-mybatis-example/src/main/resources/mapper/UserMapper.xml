@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shardingjdbc.mapper.UserMapper">
+
+    <resultMap id="baseResultMap" type="com.shardingjdbc.entity.User">
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_name_plain" property="userNamePlain"/>
+        <result column="pwd" property="pwd"/>
+        <result column="assisted_query_pwd" property="assistedQueryPwd"/>
+    </resultMap>
+
+    <select id="selectLikePwd" resultMap="baseResultMap">
+        SELECT user_id,
+               user_name,
+               user_name_plain,
+               pwd,
+               assisted_query_pwd
+        FROM t_user
+        where pwd like #{pwd}
+    </select>
+</mapper>

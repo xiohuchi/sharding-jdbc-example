@@ -108,7 +108,7 @@ spring:
 
         t_attendance:
           #真实表分布 按月分表
-          actual-data-nodes: ds_$->{0..1}.t_attendance$->{2019..2020}0$->{1..9},ds_$->{0..1}.t_attendance$->{2019..2020}$->{10..12},
+          actual-data-nodes: ds_$->{0..1}.t_attendance$->{2019..2021}0$->{1..9},ds_$->{0..1}.t_attendance$->{2019..2021}$->{10..12},
           table-strategy:
             #标准分表策略
             standard:

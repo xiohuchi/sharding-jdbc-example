@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sharding.druid.mapper.StudentMapper">
+<mapper namespace="com.sharding.dynamic.mapper.StudentMapper">
 
     <!--auto generated Code-->
-    <resultMap id="AllColumnMap" type="com.sharding.druid.entity.Student">
+    <resultMap id="AllColumnMap" type="com.sharding.dynamic.entity.Student">
         <result column="id" property="id"/>
         <result column="sno" property="sno"/>
         <result column="name" property="name"/>

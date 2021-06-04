@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 11/05/2020 14:10:39
+ Date: 11/05/2021 14:10:39
 */
 
 SET NAMES utf8mb4;
@@ -174,10 +174,10 @@ CREATE TABLE `t_attendance201912`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202001
+-- Table structure for t_attendance202101
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202001`;
-CREATE TABLE `t_attendance202001`  (
+DROP TABLE IF EXISTS `t_attendance202101`;
+CREATE TABLE `t_attendance202101`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -187,10 +187,10 @@ CREATE TABLE `t_attendance202001`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202002
+-- Table structure for t_attendance202102
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202002`;
-CREATE TABLE `t_attendance202002`  (
+DROP TABLE IF EXISTS `t_attendance202102`;
+CREATE TABLE `t_attendance202102`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -200,10 +200,10 @@ CREATE TABLE `t_attendance202002`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202003
+-- Table structure for t_attendance202103
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202003`;
-CREATE TABLE `t_attendance202003`  (
+DROP TABLE IF EXISTS `t_attendance202103`;
+CREATE TABLE `t_attendance202103`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -213,10 +213,10 @@ CREATE TABLE `t_attendance202003`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202004
+-- Table structure for t_attendance202104
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202004`;
-CREATE TABLE `t_attendance202004`  (
+DROP TABLE IF EXISTS `t_attendance202104`;
+CREATE TABLE `t_attendance202104`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -226,10 +226,10 @@ CREATE TABLE `t_attendance202004`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202005
+-- Table structure for t_attendance202105
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202005`;
-CREATE TABLE `t_attendance202005`  (
+DROP TABLE IF EXISTS `t_attendance202105`;
+CREATE TABLE `t_attendance202105`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -239,10 +239,10 @@ CREATE TABLE `t_attendance202005`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202006
+-- Table structure for t_attendance202106
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202006`;
-CREATE TABLE `t_attendance202006`  (
+DROP TABLE IF EXISTS `t_attendance202106`;
+CREATE TABLE `t_attendance202106`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -252,10 +252,10 @@ CREATE TABLE `t_attendance202006`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202007
+-- Table structure for t_attendance202107
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202007`;
-CREATE TABLE `t_attendance202007`  (
+DROP TABLE IF EXISTS `t_attendance202107`;
+CREATE TABLE `t_attendance202107`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -265,10 +265,10 @@ CREATE TABLE `t_attendance202007`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202008
+-- Table structure for t_attendance202108
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202008`;
-CREATE TABLE `t_attendance202008`  (
+DROP TABLE IF EXISTS `t_attendance202108`;
+CREATE TABLE `t_attendance202108`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -278,10 +278,10 @@ CREATE TABLE `t_attendance202008`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202009
+-- Table structure for t_attendance202109
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202009`;
-CREATE TABLE `t_attendance202009`  (
+DROP TABLE IF EXISTS `t_attendance202109`;
+CREATE TABLE `t_attendance202109`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -291,10 +291,10 @@ CREATE TABLE `t_attendance202009`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202010
+-- Table structure for t_attendance202110
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202010`;
-CREATE TABLE `t_attendance202010`  (
+DROP TABLE IF EXISTS `t_attendance202110`;
+CREATE TABLE `t_attendance202110`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -304,10 +304,10 @@ CREATE TABLE `t_attendance202010`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202011
+-- Table structure for t_attendance202111
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202011`;
-CREATE TABLE `t_attendance202011`  (
+DROP TABLE IF EXISTS `t_attendance202111`;
+CREATE TABLE `t_attendance202111`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -317,10 +317,10 @@ CREATE TABLE `t_attendance202011`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for t_attendance202012
+-- Table structure for t_attendance202112
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attendance202012`;
-CREATE TABLE `t_attendance202012`  (
+DROP TABLE IF EXISTS `t_attendance202112`;
+CREATE TABLE `t_attendance202112`  (
   `attendance_id` bigint(20) NOT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `site_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,

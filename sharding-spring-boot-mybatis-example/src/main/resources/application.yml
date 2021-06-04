@@ -2,12 +2,5 @@ server:
   port: 8905
 spring:
   profiles:
-#    active: master-slave
+    #    active: master-slave
     active: sharding-master-slave
-
-
-mybatis:
-  mapper-locations: classpath:mappers/*.xml
-  typeAliasesPackage: com.shardingjdbc.entity
-  configuration:
-    map-underscore-to-camel-case: true

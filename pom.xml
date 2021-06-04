@@ -18,6 +18,7 @@
         <module>sharding-spring-boot-mybatis-example</module>
         <module>sharding-table</module>
         <module>sharding-table-druid</module>
+        <module>sharding-table-dynamic-datasource</module>
     </modules>
 
     <packaging>pom</packaging>

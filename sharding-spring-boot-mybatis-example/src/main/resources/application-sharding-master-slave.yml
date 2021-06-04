@@ -58,10 +58,10 @@ spring:
           sharding-column: order_id
           #range-algorithm-class-name: com.shardingjdbc.algorithm.UserIdDatabaseAlgorithm
           precise-algorithm-class-name: com.shardingjdbc.algorithm.UserIdDatabaseAlgorithm
-#        #内置
-#        inline:
-#          sharding-column: user_id
-#          algorithm-expression: ds_$->{user_id % 2}
+      #        #内置
+      #        inline:
+      #          sharding-column: user_id
+      #          algorithm-expression: ds_$->{user_id % 2}
       #绑定表
       binding-tables: t_order,t_attendance
       #广播表
@@ -85,10 +85,10 @@ spring:
                 id: 123
 
         t_attendance:
-          #真实表分布 按月分表
-          actual-data-nodes: ds_$->{0..1}.t_attendance$->{2019..2020}0$->{1..9},ds_$->{0..1}.t_attendance$->{2019..2020}$->{10..12},
+          #真实表分布 按月分库分表
+          actual-data-nodes: ds_$->{0..1}.t_attendance$->{2021..2022}0$->{1..9},ds_$->{0..1}.t_attendance$->{2021..2022}$->{10..12},
           table-strategy:
-            #标准分表策略
+            #标准分库分表策略
             standard:
               sharding-column: access_date
               precise-algorithm-class-name: com.shardingjdbc.algorithm.AttendanceShardingTableAlgorithm

@@ -1,7 +1,7 @@
 package com.shardingjdbc.web;
 
 import com.shardingjdbc.entity.Attendance;
-import com.shardingjdbc.mapper.AttendanceMapper;
+import com.shardingjdbc.service.AttendanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * @author yangbin
- * @date 2020年05月09日
+ * @date 2021年05月09日
  */
 @RestController
 @RequestMapping("/attendance")
@@ -20,11 +20,11 @@ import java.util.Date;
 public class AttendanceController {
 
     @Resource
-    private AttendanceMapper attendanceMapper;
+    private AttendanceService attendanceService;
 
     @GetMapping("/list")
     public Object list() {
-        return attendanceMapper.list();
+        return attendanceService.list();
     }
 
     @GetMapping("/add")
@@ -35,8 +35,8 @@ public class AttendanceController {
             attendance.setSiteName(i + "-深圳市南山区环球数码大厦");
             attendance.setAccessDate(new Date());
             attendance.setInsertTime(new Date());
-            long resutl = attendanceMapper.add(attendance);
-            log.info("insert:" + attendance.toString() + " result:" + resutl);
+            attendanceService.save(attendance);
+            log.info("insert:" + attendance);
         }
         return "ok";
     }

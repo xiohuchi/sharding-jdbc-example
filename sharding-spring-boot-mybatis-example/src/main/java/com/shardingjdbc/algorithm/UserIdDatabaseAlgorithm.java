@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * 根据userId分库策略
  *
  * @author yangbin
- * @date 2020年05月09日
+ * @date 2021年05月09日
  */
 @Slf4j
 public class UserIdDatabaseAlgorithm implements PreciseShardingAlgorithm<Long> {

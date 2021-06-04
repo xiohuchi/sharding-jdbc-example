@@ -1,0 +1,37 @@
+server:
+  port: 8903
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  typeAliasesPackage: com.sharding.dynamic.entity
+
+spring:
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  shardingsphere:
+    datasource:
+      names: master
+      # 配置主库
+      master:
+        url: jdbc:mysql://106.52.208.123:3306/master0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        username: root
+        password: 123456
+
+    sharding:
+      #分表策略
+      tables:
+        student_score:
+          #真实表分布
+          actual-data-nodes: master.student_score_$->{0..2}
+          table-strategy:
+            #内置分表策略
+            inline:
+              sharding-column: student_id
+              algorithm-expression: student_score_$->{student_id % 3}
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+    props:
+      sql.show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
